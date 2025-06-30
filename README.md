@@ -93,7 +93,7 @@ tumba-landing/
 ### Локальный запуск
 1. Клонируйте репозиторий:
 ```bash
-git clone https://github.com/your-username/tumba-landing.git
+git clone https://github.com/BagmanG/Tumba-Landing.git
 ```
 
 2. Откройте файл `index.html` в браузере
