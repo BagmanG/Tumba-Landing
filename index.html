@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumba - Премиальная мебель в Москве</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+        }
+
+        .hero-gradient {
+            background: var(--primary-gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/background.webp') center/cover;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .section-modern {
+            padding: 6rem 0;
+            background: linear-gradient(45deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .product-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--secondary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 0.9;
+        }
+
+        .stats-section {
+            background: var(--dark-gradient);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cta-section {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 5rem 0;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .modern-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .modern-input:focus {
+            background: white;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-modern {
+            background: #1a1a1a;
+            color: #cccccc;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .section-modern {
+                padding: 3rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-custom is-fixed-top" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item has-text-weight-bold is-size-4" href="#" style="color: #667eea;">
+                    <i class="fas fa-couch mr-2"></i>Tumba
+                </a>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <a class="navbar-item has-text-weight-semibold" href="#catalog">Каталог</a>
+                    <a class="navbar-item has-text-weight-semibold" href="#about">О нас</a>
+                    <a class="navbar-item has-text-weight-semibold" href="#reviews">Отзывы</a>
+                    <a class="navbar-item has-text-weight-semibold" href="#contact">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero hero-gradient is-fullheight">
+        <div class="hero-body">
+            <div class="container hero-content">
+                <div class="columns is-vcentered">
+                    <div class="column is-6">
+                        <h1 class="title is-1 has-text-white has-text-weight-bold">
+                            Премиальная мебель для вашего дома
+                        </h1>
+                        <p class="subtitle is-4 has-text-white-ter mb-5">
+                            Создаем уютные пространства с итальянским качеством и дизайном мирового уровня в самом сердце Москвы
+                        </p>
+                        <div class="buttons">
+                            <a href="#catalog" class="button is-white is-large is-rounded pulse-animation">
+                                <span class="icon"><i class="fas fa-eye"></i></span>
+                                <span>Смотреть каталог</span>
+                            </a>
+                            <a href="#contact" class="button is-ghost is-large is-rounded has-text-white">
+                                <span class="icon"><i class="fas fa-phone"></i></span>
+                                <span>Связаться с нами</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column is-6">
+                        <div class="floating-card p-5">
+                            <div class="has-text-centered">
+                                <i class="fas fa-home is-size-1 has-text-primary mb-4"></i>
+                                <h3 class="title is-4 mb-3">Бесплатная консультация</h3>
+                                <p class="mb-4">Наши дизайнеры помогут создать интерьер мечты</p>
+                                <a class="button is-primary is-fullwidth is-rounded">Получить консультацию</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-modern" id="catalog">
+        <div class="container">
+            <div class="has-text-centered mb-6">
+                <h2 class="title is-2 has-text-weight-bold">Наша коллекция</h2>
+                <p class="subtitle is-5 has-text-grey">Каждый предмет создан с любовью к деталям</p>
+            </div>
+            
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product0.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Гостиные</h4>
+                            <p class="has-text-grey">Современные решения для семейного отдыха</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 89 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product1.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Спальни</h4>
+                            <p class="has-text-grey">Комфорт и уют для идеального сна</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 120 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product2.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Кухни</h4>
+                            <p class="has-text-grey">Функциональность встречает красоту</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 150 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product3.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Офисная мебель</h4>
+                            <p class="has-text-grey">Эргономичные решения для работы</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 45 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product4.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Детская мебель</h4>
+                            <p class="has-text-grey">Безопасность и развитие малышей</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 35 000 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="product-card">
+                        <div class="product-image" style="background-image: url('images/product5.webp')">
+                            <div class="product-overlay">
+                                <button class="button is-white is-rounded">Подробнее</button>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="title is-5">Аксессуары</h4>
+                            <p class="has-text-grey">Завершающие штрихи интерьера</p>
+                            <div class="mt-3">
+                                <span class="tag is-primary is-rounded">от 2 500 ₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="columns is-multiline has-text-centered">
+                <div class="column is-3">
+                    <div class="stat-number">15</div>
+                    <p class="is-size-5">лет на рынке</p>
+                </div>
+                <div class="column is-3">
+                    <div class="stat-number">2000+</div>
+                    <p class="is-size-5">довольных клиентов</p>
+                </div>
+                <div class="column is-3">
+                    <div class="stat-number">50</div>
+                    <p class="is-size-5">дизайнеров в команде</p>
+                </div>
+                <div class="column is-3">
+                    <div class="stat-number">24/7</div>
+                    <p class="is-size-5">поддержка клиентов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-6">
+                    <h2 class="title is-2 has-text-weight-bold">Почему выбирают Tumba?</h2>
+                    <div class="content is-medium">
+                        <div class="media mb-4">
+                            <div class="media-left">
+                                <span class="icon is-large has-text-primary">
+                                    <i class="fas fa-medal fa-2x"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <h5 class="title is-5">Премиальное качество</h5>
+                                <p>Используем только лучшие материалы от европейских поставщиков</p>
+                            </div>
+                        </div>
+                        
+                        <div class="media mb-4">
+                            <div class="media-left">
+                                <span class="icon is-large has-text-primary">
+                                    <i class="fas fa-shipping-fast fa-2x"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <h5 class="title is-5">Быстрая доставка</h5>
+                                <p>Доставляем по Москве в течение 24 часов после заказа</p>
+                            </div>
+                        </div>
+                        
+                        <div class="media mb-4">
+                            <div class="media-left">
+                                <span class="icon is-large has-text-primary">
+                                    <i class="fas fa-tools fa-2x"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <h5 class="title is-5">Профессиональная сборка</h5>
+                                <p>Наши мастера соберут мебель быстро и качественно</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <figure class="image">
+                        <img src="images/about.webp" alt="Современный интерьер" style="border-radius: 15px;">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section has-background-light" id="reviews">
+        <div class="container">
+            <div class="has-text-centered mb-6">
+                <h2 class="title is-2 has-text-weight-bold">Отзывы наших клиентов</h2>
+                <p class="subtitle is-5 has-text-grey">Более 2000 семей уже обустроили свои дома с Tumba</p>
+            </div>
+            
+            <div class="columns is-multiline">
+                <div class="column is-4">
+                    <div class="testimonial-card">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img class="is-rounded" src="images/review_people_0.webp" alt="Клиент">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-6">Александр Петров</p>
+                                <p class="subtitle is-7 has-text-grey">Москва, Арбат</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="mb-3">
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>"Заказывали кухонный гарнитур. Качество превзошло все ожидания! Доставили точно в срок, собрали профессионально."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="testimonial-card">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img class="is-rounded" src="images/review_people_1.webp" alt="Клиент">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-6">Мария Иванова</p>
+                                <p class="subtitle is-7 has-text-grey">Москва, Тверская</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="mb-3">
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>"Обставили всю квартиру. Дизайнер помог подобрать идеальное сочетание. Мебель просто великолепная!"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column is-4">
+                    <div class="testimonial-card">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img class="is-rounded" src="images/review_people_2.webp" alt="Клиент">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <p class="title is-6">Дмитрий Козлов</p>
+                                <p class="subtitle is-7 has-text-grey">Москва, Сокольники</p>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="mb-3">
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span class="icon has-text-warning">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                            <p>"Офисная мебель высочайшего качества. Сотрудники довольны, производительность выросла. Рекомендую!"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="columns is-vcentered">
+                <div class="column is-6">
+                    <h2 class="title is-2 has-text-white has-text-weight-bold">
+                        Готовы преобразить ваш дом?
+                    </h2>
+                    <p class="subtitle is-4 has-text-white-ter mb-5">
+                        Свяжитесь с нами прямо сейчас и получите бесплатную консультацию дизайнера
+                    </p>
+                    <div class="content has-text-white-ter">
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <p class="is-size-5">+7 (495) 123-45-67</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <p class="is-size-5">info@tumba-moscow.ru</p>
+                            </div>
+                        </div>
+                        <div class="media mb-3">
+                            <div class="media-left">
+                                <span class="icon is-medium">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </span>
+                            </div>
+                            <div class="media-content">
+                                <p class="is-size-5">Москва, ул. Тверская, д. 15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column is-6">
+                    <div class="contact-form">
+                        <h3 class="title is-4 has-text-white mb-4">Заказать звонок</h3>
+                        <form>
+                            <div class="field">
+                                <input class="input modern-input" type="text" placeholder="Ваше имя" required>
+                            </div>
+                            <div class="field">
+                                <input class="input modern-input" type="tel" placeholder="Телефон" required>
+                            </div>
+                            <div class="field">
+                                <textarea class="textarea modern-input" placeholder="Расскажите о ваших пожеланиях" rows="4"></textarea>
+                            </div>
+                            <div class="field">
+                                <button class="button is-white is-fullwidth is-rounded is-medium" type="submit">
+                                    <span class="icon"><i class="fas fa-paper-plane"></i></span>
+                                    <span>Отправить заявку</span>
+                                </button>
+                            </div>
+                            <p class="is-size-7 has-text-white-ter">
+                                Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer footer-modern">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-4">
+                    <h4 class="title is-5 has-text-white mb-4">
+                        <i class="fas fa-couch mr-2"></i>Tumba
+                    </h4>
+                    <p class="mb-4">Создаем красивые и функциональные пространства для жизни, работы и отдыха в Москве уже более 15 лет.</p>
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <a class="social-icon" href="#">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="social-icon" href="#">
+                                <i class="fab fa-vk"></i>
+                            </a>
+                        </p>
+                        <p class="control">
+                            <a class="social-icon" href="#">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="column is-2">
+                    <h5 class="title is-6 has-text-white mb-3">Каталог</h5>
+                    <ul>
+                        <li><a href="#" class="has-text-grey-light">Гостиные</a></li>
+                        <li><a href="#" class="has-text-grey-light">Спальни</a></li>
+                        <li><a href="#" class="has-text-grey-light">Кухни</a></li>
+                        <li><a href="#" class="has-text-grey-light">Офисная мебель</a></li>
+                        <li><a href="#" class="has-text-grey-light">Детская мебель</a></li>
+                    </ul>
+                </div>
+                <div class="column is-2">
+                    <h5 class="title is-6 has-text-white mb-3">Услуги</h5>
+                    <ul>
+                        <li><a href="#" class="has-text-grey-light">Дизайн интерьера</a></li>
+                        <li><a href="#" class="has-text-grey-light">Доставка</a></li>
+                        <li><a href="#" class="has-text-grey-light">Сборка мебели</a></li>
+                        <li><a href="#" class="has-text-grey-light">Гарантия</a></li>
+                        <li><a href="#" class="has-text-grey-light">Рассрочка</a></li>
+                    </ul>
+                </div>
+                <div class="column is-2">
+                    <h5 class="title is-6 has-text-white mb-3">Информация</h5>
+                    <ul>
+                        <li><a href="#" class="has-text-grey-light">О компании</a></li>
+                        <li><a href="#" class="has-text-grey-light">Отзывы</a></li>
+                        <li><a href="#" class="has-text-grey-light">Контакты</a></li>
+                        <li><a href="#" class="has-text-grey-light">Вакансии</a></li>
+                        <li><a href="#" class="has-text-grey-light">Блог</a></li>
+                    </ul>
+                </div>
+                <div class="column is-2">
+                    <h5 class="title is-6 has-text-white mb-3">Контакты</h5>
+                    <div class="content has-text-grey-light is-small">
+                        <p><i class="fas fa-phone mr-2"></i>+7 (495) 123-45-67</p>
+                        <p><i class="fas fa-envelope mr-2"></i>info@tumba-moscow.ru</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i>Москва, ул. Тверская, д. 15</p>
+                        <p><i class="fas fa-clock mr-2"></i>Пн-Вс: 9:00-21:00</p>
+                    </div>
+                </div>
+            </div>
+            <hr style="background-color: #333;">
+            <div class="columns is-vcentered">
+                <div class="column">
+                    <p class="has-text-grey">&copy; 2025 Tumba. Все права защищены.</p>
+                </div>
+                <div class="column has-text-right">
+                    <p class="has-text-grey is-size-7">
+                        <a href="#" class="has-text-grey mr-3">Политика конфиденциальности</a>
+                        <a href="#" class="has-text-grey">Условия использования</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const burger = document.querySelector('.navbar-burger');
+            const menu = document.querySelector('.navbar-menu');
+            
+            burger.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const button = form.querySelector('button[type="submit"]');
+                    const originalText = button.innerHTML;
+                    
+                    button.innerHTML = '<span class="icon"><i class="fas fa-spinner fa-spin"></i></span><span>Отправляем...</span>';
+                    button.disabled = true;
+                    
+                    setTimeout(() => {
+                        button.innerHTML = '<span class="icon"><i class="fas fa-check"></i></span><span>Заявка отправлена!</span>';
+                        button.classList.remove('is-white');
+                        button.classList.add('is-success');
+                        
+                        setTimeout(() => {
+                            button.innerHTML = originalText;
+                            button.disabled = false;
+                            button.classList.remove('is-success');
+                            button.classList.add('is-white');
+                            form.reset();
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.product-card, .testimonial-card, .floating-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            let lastScrollTop = 0;
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    navbar.style.transform = 'translateY(-100%)';
+                } else {
+                    navbar.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            navbar.style.transition = 'transform 0.3s ease';
+        });
+    </script>
+</body>
+</html>
